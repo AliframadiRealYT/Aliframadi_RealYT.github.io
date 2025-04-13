@@ -2,21 +2,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aliframadi_Real - Roblox Scripts</title>
+  <title>AliframadiScript</title>
   <style>
     body {
       margin: 0;
-      background-color: #0e0e0e;
+      font-family: Arial, sans-serif;
+      background-color: #0f0f0f;
       color: #fff;
-      font-family: 'Segoe UI', sans-serif;
     }
     header {
-      background-color: #1a1a1a;
+      background-color: #111;
       padding: 20px;
       text-align: center;
-    }
-    header h1 {
-      color: #29a8ff;
+      font-size: 24px;
+      font-weight: bold;
+      color: #1e90ff;
     }
     .search-bar {
       text-align: center;
@@ -25,85 +25,96 @@
     .search-bar input {
       padding: 10px;
       width: 300px;
-      border-radius: 8px;
+      border-radius: 5px;
       border: none;
     }
-    .scripts-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    .scripts {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
       gap: 20px;
       padding: 20px;
     }
-    .script-card {
-      background-color: #1c1c1c;
+    .card {
+      background-color: #1a1a1a;
       border-radius: 10px;
-      padding: 15px;
-      box-shadow: 0 0 10px #000;
+      padding: 20px;
+      width: 300px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
     }
-    .script-card h3 {
-      margin: 10px 0 5px;
+    .card h3 {
+      margin-top: 0;
+      color: #00bfff;
     }
-    .script-card button {
-      background-color: #29a8ff;
-      border: none;
-      padding: 10px;
-      border-radius: 6px;
-      color: white;
-      cursor: pointer;
-      margin-right: 10px;
-    }
-    .script-card pre {
-      display: none;
-      background: #111;
-      padding: 10px;
-      border-radius: 6px;
+    .card button {
       margin-top: 10px;
+      margin-right: 10px;
+      padding: 8px 15px;
+      border: none;
+      background-color: #1e90ff;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .card pre {
+      display: none;
+      background-color: #222;
+      padding: 10px;
+      border-radius: 5px;
       white-space: pre-wrap;
+      word-break: break-word;
+      margin-top: 10px;
+    }
+    .close-btn {
+      margin-top: 10px;
+      background-color: #ff4444;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Aliframadi_Real - Roblox Scripts</h1>
-  </header>
-  <div class="search-bar">
-    <input type="text" id="searchInput" placeholder="Search scripts..." onkeyup="searchScript()">
-  </div>
-  <div class="scripts-container" id="scripts">
-    <div class="script-card">
+  <header>AliframadiScript_Real Website</header>  <div class="search-bar">
+    <input type="text" id="searchInput" onkeyup="searchScript()" placeholder="Search script..." />
+  </div>  <div class="scripts" id="scriptList">
+    <div class="card">
       <h3>Anime Kingdom Simulator Script</h3>
-      <button onclick="toggleScript(this)">Get The Script</button>
+      <button onclick="showScript(this)">Get Script</button>
       <button onclick="copyScript(this)">Copy</button>
       <pre>loadstring(game:HttpGet("https://raw.githubusercontent.com/OhhMyGehlee/pil/refs/heads/main/ty"))()</pre>
+      <button class="close-btn" onclick="closeScript(this)">Close</button>
     </div>
-
-    <div class="script-card">
-      <h3>Punch Wall Simulator Script</h3>
-      <button onclick="toggleScript(this)">Get The Script</button>
-      <button onclick="copyScript(this)">Copy</button>
-      <pre>loadstring(game:HttpGet("https://raw.githubusercontent.com/Bebo-Mods/BeboScripts/main/PunchWallSim.lua"))()</pre>
-    </div>
-    <!-- Add more .script-card blocks here -->
+    
+    <div class="card">
+  <h3>Punch Wall Simulator Script</h3></h3>
+  <button onclick="showScript(this)">Get Script</button>
+  <button onclick="copyScript(this)">Copy</button>
+  <pre>loadstring(game:HttpGet("https://raw.githubusercontent.com/Bebo-Mods/BeboScripts/main/PunchWallSim.lua"))()</pre>
+  <button class="close-btn" onclick="closeScript(this)">Close</button>
+</div>
   </div>  <script>
-    function toggleScript(btn) {
-      const pre = btn.parentElement.querySelector("pre");
-      pre.style.display = pre.style.display === "block" ? "none" : "block";
+    function searchScript() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+        const title = card.querySelector('h3').innerText.toLowerCase();
+        card.style.display = title.includes(input) ? 'block' : 'none';
+      });
+    }
+
+    function showScript(btn) {
+      const pre = btn.parentElement.querySelector('pre');
+      pre.style.display = 'block';
+    }
+
+    function closeScript(btn) {
+      const pre = btn.parentElement.querySelector('pre');
+      pre.style.display = 'none';
     }
 
     function copyScript(btn) {
-      const text = btn.parentElement.querySelector("pre").innerText;
-      navigator.clipboard.writeText(text).then(() => {
-        alert("Script copied to clipboard!");
-      });
-    }
-
-    function searchScript() {
-      const input = document.getElementById("searchInput").value.toLowerCase();
-      const cards = document.querySelectorAll(".script-card");
-      cards.forEach(card => {
-        const title = card.querySelector("h3").innerText.toLowerCase();
-        card.style.display = title.includes(input) ? "block" : "none";
+      const pre = btn.parentElement.querySelector('pre');
+      navigator.clipboard.writeText(pre.innerText).then(() => {
+        alert('Script copied!');
       });
     }
   </script></body>
-  </html>
+</html>
