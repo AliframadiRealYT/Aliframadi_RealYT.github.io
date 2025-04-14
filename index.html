@@ -89,8 +89,16 @@
   <button onclick="copyScript(this)">Copy</button>
   <pre>loadstring(game:HttpGet("https://raw.githubusercontent.com/Bebo-Mods/BeboScripts/main/PunchWallSim.lua"))()</pre>
   <button class="close-btn" onclick="closeScript(this)">Close</button>
-</div>
-  </div>  <script>
+    <div>
+      
+    <div class="card">
+  <h3>Dig To Earth's Core</h3>
+  <button onclick="showScript(this)">Get Script</button>
+  <button onclick="copyScript(this)">Copy</button>
+  <pre>loadstring(game:HttpGet("https://raw.githubusercontent.com/gumanba/Scripts/main/DigtoEarth"))()</pre>
+  <button class="close-btn" onclick="closeScript(this)">Close</button>
+    </div>
+    </div>  <script>
     function searchScript() {
       const input = document.getElementById('searchInput').value.toLowerCase();
       const cards = document.querySelectorAll('.card');
